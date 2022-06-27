@@ -6,9 +6,6 @@ import org.apache.log4j.xml.DOMConfigurator;
 import java.net.URL;
 
 
-/* Log usage parameters Log.logger(String tag, String message)
-                        Log.logger(Log.LogConstant.[options],[message]) */
-
 public class Log {
     private final static Logger logger = Logger.getLogger(Log.class);
 

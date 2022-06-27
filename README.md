@@ -22,7 +22,10 @@ Use cases:
 2. User is able to display all server information.
 3. User is able to book (due date and description are required).
 4. User is able to extend reservation.
-5. Super user is able to perform all CRUD operations.
+5. User is able to edit own deadline and project
+6. Super user is able to perform all CRUD operations.
+7. Inform the user one week left to deadline
+
 
 
 

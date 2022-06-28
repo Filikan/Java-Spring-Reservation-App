@@ -19,7 +19,7 @@ public class DBConstants {
         return DB_CONN_PASSWORD;
     }
     private static final String CREATE_USER_TABLE = "CREATE TABLE IF NOT EXISTS users " +
-            "(ID INT PRIMARY KEY ," +
+            "(ID INT PRIMARY KEY NOT NULL," +
             " USER_NAME TEXT, " +
             " FIRST_NAME TEXT, "+
             " LAST_NAME TEXT, "+
@@ -31,21 +31,24 @@ public class DBConstants {
             "(ID INT PRIMARY KEY ," +
             " SERVER_NAME TEXT, " +
             "SERVER_LOCATION TEXT,"+
-            "SERIAL_NUMBER INT, "+
-            " SERVER_IP TEXT)";
+            " SERVER_IP TEXT,"+
+            "SERIAL_NUMBER TEXT, "+
+            "SERVER_TYPE TEXT,"+
+            "IS_HOST BOOLEAN)";
+
 
     private static final String CREATE_RESERVATİON_TABLE =" CREATE TABLE IF NOT EXISTS reservation" +
            "(ID INT PRIMARY KEY ," +
             "SERVER_ID INT ,"+
-            "RELATED_GROUP TEXT," +
             "DESCRIPTION TEXT, "+
             "RESERVED_BY TEXT, "+
             "IS_AVAILABLE BOOLEAN,"+
             "DEADLINE DATE, "+
+            "RELATED_GROUP TEXT,"+
             "IS_REMINDER BOOLEAN)";
 
     private static final String CREATE_GROUP_TABLE = " CREATE TABLE IF NOT EXISTS groups" +
-            "(ID INT PRIMARY KEY,"+
+            "(ID INT PRIMARY KEY  NOT NULL,"+
             "GROUP_NAME TEXT)";
 
 

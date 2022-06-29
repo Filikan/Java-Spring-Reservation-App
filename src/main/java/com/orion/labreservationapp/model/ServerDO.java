@@ -6,13 +6,17 @@ public class ServerDO {
     private String serverIP;
     private String serverLocation;
     private String serialNumber;
+    private String serverType;
+    private Boolean isHost;
 
 
-    public ServerDO(String serverName, String serverIP, String serverLocation, String serialNumber) {
+    public ServerDO(String serverName, String serverIP, String serverLocation, String serialNumber, String serverType, Boolean isHost) {
         this.serverName = serverName;
         this.serverIP = serverIP;
         this.serverLocation = serverLocation;
         this.serialNumber = serialNumber;
+        this.serverType = serverType;
+        this.isHost = isHost;
     }
     public ServerDO() {
     }
@@ -31,6 +35,12 @@ public class ServerDO {
     public String getSerialNumber() {
         return serialNumber;
     }
+    public String getServerType() {
+        return serverType;
+    }
+    public Boolean getIsHost() {
+        return isHost;
+    }
     public void setId(int id) {
         this.id = id;
     }
@@ -45,6 +55,12 @@ public class ServerDO {
     }
     public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
+    }
+    public void setServerType(String serverType) {
+        this.serverType = serverType;
+    }
+    public void setIsHost(Boolean isHost) {
+        this.isHost = isHost;
     }
 }
 

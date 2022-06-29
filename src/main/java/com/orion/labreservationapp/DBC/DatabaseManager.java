@@ -17,7 +17,6 @@ public class DatabaseManager {
             connection = DriverManager
                     .getConnection(DBConstants.getConnectionURL(),
                             DBConstants.getDBUsername(), DBConstants.getDBPassword());
-            System.out.println("Opened database successfully");
 
             for (int i=0; i<getCreateTableQueries().size(); i++) {
                 statement = connection.createStatement();

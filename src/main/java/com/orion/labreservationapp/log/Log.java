@@ -13,6 +13,7 @@ public class Log {
         URL url = getClass().getClassLoader().getResource(LogConstant.LOG4J_XML_URL);
         DOMConfigurator.configure(url);
     }
+
     public static final class LogConstant {
         public final static String LOG4J_XML_URL = "log4j.xml";
         public final static boolean IS_DEBUG = true;
@@ -21,6 +22,7 @@ public class Log {
         public final static String TAG_ERROR = "error";
 
     }
+
     public static void logger(String tag, String message) {
         if (LogConstant.IS_DEBUG) {
             String fullClassName = Thread.currentThread().getStackTrace()[2].getClassName();
@@ -30,24 +32,27 @@ public class Log {
 
             String logMessage = (className + "." + methodName + "():" + lineNumber + " : " + message);
 
-            if (LogConstant.TAG_INFO.equals(tag)){
+            if (LogConstant.TAG_INFO.equals(tag)) {
                 info(logMessage);
             }
-            if (LogConstant.TAG_WARN.equals(tag)){
+            if (LogConstant.TAG_WARN.equals(tag)) {
                 warn(logMessage);
             }
-            if (LogConstant.TAG_ERROR.equals(tag)){
+            if (LogConstant.TAG_ERROR.equals(tag)) {
                 error(logMessage);
             }
         }
     }
+
     private final static void info(String message) {
         logger.info(message);
     }
-    private final static void warn(String message){
+
+    private final static void warn(String message) {
         logger.warn(message);
     }
-    private final static void error(String message){
+
+    private final static void error(String message) {
         logger.error(message);
     }
 }

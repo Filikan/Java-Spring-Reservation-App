@@ -6,15 +6,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.sql.SQLException;
+
 @Controller
 public class PageController {
 
-    @Autowired(required=false)
+    @Autowired
     private AdminServiceIF adminServiceIF;
-@RequestMapping(value="/", method= RequestMethod.GET)
-    public String getHome() {
-    adminServiceIF.findAll();
 
-    return "hello";
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String getHome() throws SQLException {
+        int count = adminServiceIF.getServerCount();
+        return "index.html";
     }
 }

@@ -18,7 +18,7 @@ public class DatabaseManager {
                     .getConnection(DBConstants.getConnectionURL(),
                             DBConstants.getDBUsername(), DBConstants.getDBPassword());
 
-            for (int i=0; i<getCreateTableQueries().size(); i++) {
+            for (int i = 0; i < getCreateTableQueries().size(); i++) {
                 statement = connection.createStatement();
                 String query = getCreateTableQueries().get(i);
                 statement.executeUpdate(query);

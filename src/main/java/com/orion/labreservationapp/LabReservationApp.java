@@ -8,12 +8,10 @@ import org.springframework.context.annotation.ComponentScan;
 import java.sql.SQLException;
 
 @SpringBootApplication
-@ComponentScan({"com.orion.labreservationapp.controller","com.orion.labreservationapp.repository","c"})
 public class LabReservationApp {
 
-	public static void main(String[] args) throws SQLException {
-		DatabaseManager.run();
-		SpringApplication.run(LabReservationApp.class, args);
-
-	}
+    public static void main(String[] args) throws SQLException {
+        DatabaseManager.run();
+        SpringApplication.run(LabReservationApp.class, args);
+    }
 }

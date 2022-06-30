@@ -2,65 +2,76 @@ package com.orion.labreservationapp.model;
 
 public class ServerDO {
     private int id;
-    private String serverName;
-    private String serverIP;
-    private String serverLocation;
-    private String serialNumber;
-    private String serverType;
-    private Boolean isHost;
+    private String server_name;
+    private String server_ip;
+    private String server_location;
+    private String serial_number;
+    private String server_type;
+    private Boolean is_host;
 
 
-    public ServerDO(String serverName, String serverIP, String serverLocation, String serialNumber, String serverType, Boolean isHost) {
-        this.serverName = serverName;
-        this.serverIP = serverIP;
-        this.serverLocation = serverLocation;
-        this.serialNumber = serialNumber;
-        this.serverType = serverType;
-        this.isHost = isHost;
-    }
-    public ServerDO() {
+    public ServerDO(String server_name, String server_ip, String server_location, String serial_number, String server_type, Boolean is_host, int id) {
+        this.server_name = server_name;
+        this.server_ip = server_ip;
+        this.server_location = server_location;
+        this.serial_number = serial_number;
+        this.server_type = server_type;
+        this.is_host = is_host;
+        this.id = id;
     }
     public int getId() {
         return id;
     }
-    public String getServerName() {
-        return serverName;
+    public String getServer_name() {
+        return server_name;
     }
-    public String getServerIP() {
-        return serverIP;
+    public String getServer_ip() {
+        return server_ip;
     }
-    public String getServerLocation() {
-        return serverLocation;
+    public String getServer_location() {
+        return server_location;
     }
-    public String getSerialNumber() {
-        return serialNumber;
+    public String getSerial_number() {
+        return serial_number;
     }
-    public String getServerType() {
-        return serverType;
+    public String getServer_type() {
+        return server_type;
     }
-    public Boolean getIsHost() {
-        return isHost;
+    public Boolean getIs_host() {
+        return is_host;
     }
     public void setId(int id) {
         this.id = id;
     }
-    public void setServerName(String serverName) {
-        this.serverName = serverName;
+    public void setServer_name(String server_name) {
+        this.server_name = server_name;
     }
-    public void setServerIP(String serverIP) {
-        this.serverIP = serverIP;
+    public void setServer_ip(String server_ip) {
+        this.server_ip = server_ip;
     }
-    public void setServerLocation(String serverLocation) {
-        this.serverLocation = serverLocation;
+    public void setServer_location(String server_location) {
+        this.server_location = server_location;
     }
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
+    public void setSerial_number(String serial_number) {
+        this.serial_number = serial_number;
     }
-    public void setServerType(String serverType) {
-        this.serverType = serverType;
+    public void setServer_type(String server_type) {
+        this.server_type = server_type;
     }
-    public void setIsHost(Boolean isHost) {
-        this.isHost = isHost;
+    public void setIs_host(Boolean is_host) {
+        this.is_host = is_host;
+    }
+    @Override
+    public String toString() {
+        return "ServerDO{" +
+                "id=" + id +
+                ", server_name='" + server_name + '\'' +
+                ", server_ip='" + server_ip + '\'' +
+                ", server_location='" + server_location + '\'' +
+                ", serial_number='" + serial_number + '\'' +
+                ", server_type='" + server_type + '\'' +
+                ", is_host=" + is_host +
+                '}';
     }
 }
 

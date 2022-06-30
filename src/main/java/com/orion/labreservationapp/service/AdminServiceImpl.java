@@ -5,25 +5,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Repository
+@Service
 public class AdminServiceImpl implements AdminServiceIF {
-    @Autowired(required = false)
+    @Autowired(required=false)
     private JdbcTemplate jdbcTemplate;
 
+    public AdminServiceImpl(){
+
+    }
     @Override
+    //method isimleri
     public int save(ServerDO serverDO) {
         return jdbcTemplate.update("INSERT INTO servers (server_name, server_ip, server_location, serial_number, server_type, is_host) VALUES (?, ?, ?, ?, ?, ?)",
                new Object[]{
-                       serverDO.getServerName(),
-                       serverDO.getServerIP(),
-                       serverDO.getServerLocation(),
-                       serverDO.getSerialNumber(),
-                       serverDO.getServerType(),
-                       serverDO.getIsHost()});
-
+                       serverDO.getServer_name(),
+                       serverDO.getServer_ip(),
+                       serverDO.getServer_location(),
+                       serverDO.getSerial_number(),
+                       serverDO.getServer_type(),
+                       serverDO.getIs_host()});
     }
 
     @Override
@@ -35,18 +38,19 @@ public class AdminServiceImpl implements AdminServiceIF {
     public int update(ServerDO serverDO) {
         return jdbcTemplate.update("UPDATE servers SET server_name = ?, server_ip = ?, server_location = ?, serial_number = ?, server_type = ?, is_host = ? WHERE id = ?",
                 new Object[]{
-                        serverDO.getServerName(),
-                        serverDO.getServerIP(),
-                        serverDO.getServerLocation(),
-                        serverDO.getSerialNumber(),
-                        serverDO.getServerType(),
-                        serverDO.getIsHost(),
+                        serverDO.getServer_name(),
+                        serverDO.getServer_ip(),
+                        serverDO.getServer_location(),
+                        serverDO.getSerial_number(),
+                        serverDO.getServer_type(),
+                        serverDO.getIs_host(),
                         serverDO.getId()});
     }
 
     @Override
     public List<ServerDO> findByServerName(String serverName) {
-        String q = "SELECT * from tutorials WHERE title ILIKE '%" + serverName + "%'";
+        //kontrol et
+        String q = "SELECT * from servers WHERE server_name ILIKE '%" + serverName + "%'";
         return jdbcTemplate.query(q, BeanPropertyRowMapper.newInstance(ServerDO.class));
     }
 

@@ -1,24 +1,28 @@
 package com.orion.labreservationapp.model;
 
 public class ServerDO {
-    private int id;
     private String server_name;
     private String server_ip;
     private String server_location;
     private String serial_number;
     private String server_type;
     private Boolean is_host;
+    private int id;
 
+public ServerDO(String server_name, String server_ip, String server_location, String serial_number, String server_type, Boolean is_host, int id) {
+    this.server_name = server_name;
+    this.server_ip = server_ip;
+    this.server_location = server_location;
+    this.serial_number = serial_number;
+    this.server_type = server_type;
+    this.is_host = is_host;
+    this.id = id;
+}
 
-    public ServerDO(String server_name, String server_ip, String server_location, String serial_number, String server_type, Boolean is_host, int id) {
-        this.server_name = server_name;
-        this.server_ip = server_ip;
-        this.server_location = server_location;
-        this.serial_number = serial_number;
-        this.server_type = server_type;
-        this.is_host = is_host;
-        this.id = id;
+    public ServerDO() {
+
     }
+
 
     public int getId() {
         return id;

@@ -12,10 +12,10 @@ import java.util.List;
 @Service
 public class AdminServiceImpl implements AdminServiceIF {
     private final String SQL_GET_SERVERS = "SELECT * FROM servers";
-    private final String SQL_CREATE_SERVERS = "INSERT INTO servers (server_name, server_ip, server_location, serial_number, server_type, is_host) VALUES (?,?,?,?,?,?)";
-    private final String SQL_DELETE_SERVERS_BY_ID = "DELETE FROM servers WHERE server_id = ?";
+    private final String SQL_CREATE_SERVER = "INSERT INTO servers (server_name, server_ip, server_location, serial_number, server_type, is_host) VALUES (?,?,?,?,?,?)";
+    private final String SQL_DELETE_SERVER_BY_ID = "DELETE FROM servers WHERE server_id = ?";
     private final String SQL_DELETE_SERVERS = "DELETE FROM servers";
-    private final String SQL_UPDATE_SERVERS = "UPDATE servers SET server_name = ?, server_ip = ?, server_location = ?, serial_number = ?, server_type = ?, is_host = ? WHERE server_id = ?";
+    private final String SQL_UPDATE_SERVER = "UPDATE servers SET server_name = ?, server_ip = ?, server_location = ?, serial_number = ?, server_type = ?, is_host = ? WHERE server_id = ?";
 
     public int getServerCount() throws SQLException {
         Connection connection = TransactionManager.getConnection();
@@ -33,33 +33,35 @@ public class AdminServiceImpl implements AdminServiceIF {
 
 
     public List<ServerDO> getServer() throws SQLException {
-        ArrayList<ServerDO> servers = new ArrayList<>();
-        Connection connection = TransactionManager.getConnection();
-        Log.logger(Log.LogConstant.TAG_INFO, "connected to database");
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(SQL_GET_SERVERS);
-        while (resultSet.next()) {
-            ServerDO server = new ServerDO();
-            server.setServer_name(resultSet.getString("server_name"));
-            server.setServer_ip(resultSet.getString("server_ip"));
-            server.setServer_location(resultSet.getString("server_location"));
-            server.setSerial_number(resultSet.getString("serial_number"));
-            server.setServer_type(resultSet.getString("server_type"));
-            server.setIs_host(resultSet.getBoolean("is_host"));
-            server.setId(resultSet.getInt("id"));
-            servers.add(server);
+        try {
+            Connection connection = TransactionManager.getConnection();
+            List<ServerDO> servers = new ArrayList<>();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL_GET_SERVERS);
+            while (resultSet.next()) {
+                ServerDO server = new ServerDO();
+                server.setId(resultSet.getInt("server_id"));
+                server.setServer_name(resultSet.getString("server_name"));
+                server.setServer_ip(resultSet.getString("server_ip"));
+                server.setServer_location(resultSet.getString("server_location"));
+                server.setSerial_number(resultSet.getString("serial_number"));
+                server.setServer_type(resultSet.getString("server_type"));
+                server.setIs_host(resultSet.getBoolean("is_host"));
+                servers.add(server);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+            return servers;
+        } catch (SQLException e) {
+            Log.logger(Log.LogConstant.TAG_ERROR, e.getMessage());
+            throw e;
         }
-        resultSet.close();
-        statement.close();
-        connection.close();
-        return servers;
     }
-
-    @Override
-    public void createServer() throws SQLException {
+    public void addServer() throws SQLException {
         try {
         Connection connection = TransactionManager.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_SERVERS);
+        PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_SERVER);
         preparedStatement.setString(1, "server_name");
         preparedStatement.setString(2, "server_ip");
         preparedStatement.setString(3, "server_location");
@@ -71,48 +73,63 @@ public class AdminServiceImpl implements AdminServiceIF {
         connection.close();
         } catch (SQLException e) {
             Log.logger(Log.LogConstant.TAG_ERROR, e.getMessage());
+            throw e;
         }
 
     }
 
 
     public int updateServer(ServerDO server) throws SQLException {
-        Connection connection = TransactionManager.getConnection();
-        PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_SERVERS);
-        statement.setString(1, server.getServer_name());
-        statement.setString(2, server.getServer_ip());
-        statement.setString(3, server.getServer_location());
-        statement.setString(4, server.getSerial_number());
-        statement.setString(5, server.getServer_type());
-        statement.setBoolean(6, server.getIs_host());
-        statement.setInt(7, server.getId());
-        int result = statement.executeUpdate();
-        statement.close();
-        connection.close();
-        return result;
+        try {
+            Connection connection = TransactionManager.getConnection();
+            PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_SERVER);
+            statement.setString(1, server.getServer_name());
+            statement.setString(2, server.getServer_ip());
+            statement.setString(3, server.getServer_location());
+            statement.setString(4, server.getSerial_number());
+            statement.setString(5, server.getServer_type());
+            statement.setBoolean(6, server.getIs_host());
+            statement.setInt(7, server.getId());
+            int result = statement.executeUpdate();
+            statement.close();
+            connection.close();
+            return result;
+        }
+        catch (SQLException e) {
+            Log.logger(Log.LogConstant.TAG_ERROR, e.getMessage());
+            throw e;
+        }
     }
 
     public int deleteServerByID(ServerDO server) throws SQLException {
-        Connection connection = TransactionManager.getConnection();
-        PreparedStatement preparedStatement = null;
-        preparedStatement = connection.prepareStatement(SQL_DELETE_SERVERS_BY_ID);
-        preparedStatement.setInt(1, server.getId());
-        preparedStatement.executeUpdate();
-        connection.commit();
-        preparedStatement.close();
-        connection.close();
-        return server.getId();
+        try {
+            Connection connection = TransactionManager.getConnection();
+            PreparedStatement preparedStatement = null;
+            preparedStatement = connection.prepareStatement(SQL_DELETE_SERVER_BY_ID);
+            preparedStatement.setInt(1, server.getId());
+            preparedStatement.executeUpdate();
+            connection.commit();
+            preparedStatement.close();
+            connection.close();
+            return server.getId();
+        } catch (SQLException e) {
+            Log.logger(Log.LogConstant.TAG_ERROR, e.getMessage());
+            throw e;
+        }
     }
 
     public List<ServerDO> deleteServer() throws SQLException {
-        Connection connection = TransactionManager.getConnection();
-        PreparedStatement preparedStatement = null;
-        preparedStatement = connection.prepareStatement(SQL_DELETE_SERVERS);
-        preparedStatement.executeUpdate();
-        connection.commit();
-        preparedStatement.close();
-        connection.close();
-        return getServer();
+        try {
+            Connection connection = TransactionManager.getConnection();
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(SQL_DELETE_SERVERS);
+            connection.commit();
+            statement.close();
+            connection.close();
+            return getServer();
+        } catch (SQLException e) {
+            Log.logger(Log.LogConstant.TAG_ERROR, e.getMessage());
+            throw e;
+        }
     }
-
 }

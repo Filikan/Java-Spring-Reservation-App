@@ -1,5 +1,4 @@
 package com.orion.labreservationapp.controller;
-import java.rmi.ServerError;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -24,10 +23,10 @@ public class PageController {
         List<ServerDO> servers = adminServiceIF.getServer();
         return "servers.html";
     }
-    @RequestMapping(value="/create-server", method = RequestMethod.POST)
+    @RequestMapping(value="/add-server", method = RequestMethod.POST)
     public String createServer() throws SQLException {
-        adminServiceIF.createServer();
-       return "create-server.html";
+        adminServiceIF.addServer();
+       return "add-server.html";
     }
     @RequestMapping(value="/update-server", method = RequestMethod.POST)
     public String updateServer() throws SQLException {

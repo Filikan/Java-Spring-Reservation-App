@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Servers</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <style type="text/css">
+        .wrapper{
+            width: 500px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<h2>Manage Servers</h2>
+<div align="center">
+    <a th:href="@{/servers/add}">Add Server</a>
+    <a th:href="@{/servers/update}">Edit Server</a>
+    <a th:href="@{/servers/delete}">Delete Server</a>
+    <a th:href="@{/servers}">View Server</a>
+</div>
+<h2>Servers</h2>
+<div class="card">
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover" id="authorTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Server Name</th>
+                <th>Server Location</th>
+                <th>Server IP</th>
+                <th>Serial Number</th>
+                <th>Server Type</th>
+                <th>Server Status</th>
+            </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+            <tr th:each="server : ${servers}">
+                <td>
+                    <strong th:text="${server.id}">55</strong>
+                </td>
+                <td>
+                    <strong th:text="${server.server_name}">55</strong>
+                </td>
+                <td>
+                    <strong th:text="${server.server_location}"></strong>
+                </td>
+                <td>
+                    <strong th:text="${server.server_ip}">55</strong>
+                </td>
+                <td>
+                    <strong th:text="${server.serial_number}">55</strong>
+                </td>
+                <td>
+                    <strong th:text="${server.server_type}">55</strong>
+                </td>
+                <td>
+                    <input type="button" value="Book" th:onclick="'openWin(' + ${server.id} + ')'">
+                </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+<script>
+    function openWin(server_id) {
+        window.open(`http://localhost:8080/reservations/create?server_id=${server_id}`, "myWindow", "status = 1, height = 300, width = 300, resizable = 0");
+    }
+</script>
+</html>

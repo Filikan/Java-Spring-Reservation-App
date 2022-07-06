@@ -40,14 +40,11 @@ public class DBConstants {
 
 
     private static final String CREATE_RESERVATİON_TABLE = " CREATE TABLE IF NOT EXISTS reservation" +
-            "(ID INT PRIMARY KEY ," +
-            "SERVER_ID INT ," +
-            "DESCRIPTION TEXT, " +
-            "RESERVED_BY TEXT, " +
-            "IS_AVAILABLE BOOLEAN," +
-            "DEADLINE DATE, " +
-            "RELATED_GROUP TEXT," +
-            "IS_REMINDER BOOLEAN)";
+            "(USER_ID INT PRIMARY KEY ," +
+            "SERVER_ID INT REFERENCES servers (ID) ," +
+            "DATE DATE, " +
+            "STATUS BOOLEAN," +
+            "REASON TEXT)";
 
     private static final String CREATE_GROUP_TABLE = " CREATE TABLE IF NOT EXISTS groups" +
             "(ID INT PRIMARY KEY  NOT NULL," +

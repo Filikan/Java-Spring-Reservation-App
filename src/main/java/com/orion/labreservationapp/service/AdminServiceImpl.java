@@ -40,7 +40,7 @@ public class AdminServiceImpl implements AdminServiceIF {
             ResultSet resultSet = statement.executeQuery(SQL_GET_SERVERS);
             while (resultSet.next()) {
                 ServerDO server = new ServerDO();
-                server.setId(resultSet.getInt("server_id"));
+                server.setId(resultSet.getInt("id"));
                 server.setServer_name(resultSet.getString("server_name"));
                 server.setServer_ip(resultSet.getString("server_ip"));
                 server.setServer_location(resultSet.getString("server_location"));
@@ -58,25 +58,28 @@ public class AdminServiceImpl implements AdminServiceIF {
             throw e;
         }
     }
-    public void addServer() throws SQLException {
+
+    @Override
+    public void createServer() throws SQLException {
         try {
-        Connection connection = TransactionManager.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_SERVER);
-        preparedStatement.setString(1, "server_name");
-        preparedStatement.setString(2, "server_ip");
-        preparedStatement.setString(3, "server_location");
-        preparedStatement.setString(4, "serial_number");
-        preparedStatement.setString(5, "server_type");
-        preparedStatement.setBoolean(6, true);
-        int row = preparedStatement.executeUpdate();
-        connection.commit();
-        connection.close();
+            Connection connection = TransactionManager.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_SERVER);
+            preparedStatement.setString(1, "server_name");
+            preparedStatement.setString(2, "server_ip");
+            preparedStatement.setString(3, "server_location");
+            preparedStatement.setString(4, "serial_number");
+            preparedStatement.setString(5, "server_type");
+            preparedStatement.setBoolean(6, true);
+            int row = preparedStatement.executeUpdate();
+            connection.commit();
+            connection.close();
         } catch (SQLException e) {
             Log.logger(Log.LogConstant.TAG_ERROR, e.getMessage());
             throw e;
         }
 
     }
+
 
 
     public int updateServer(ServerDO server) throws SQLException {

@@ -31,6 +31,8 @@ public class PageController {
     @RequestMapping(value = "/servers", method = RequestMethod.GET)
     public String getServer(Model model) throws SQLException {
         List<ServerDO> server = adminServiceIF.getServer();
+        List<ReservationDO> reservation = reservationServiceIF.getReservation();
+        model.addAttribute("reservations",reservation);
         model.addAttribute("servers", server);
         return "servers.html";
     }

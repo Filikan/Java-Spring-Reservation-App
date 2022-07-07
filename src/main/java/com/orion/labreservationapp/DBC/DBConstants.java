@@ -40,7 +40,8 @@ public class DBConstants {
 
 
     private static final String CREATE_RESERVATİON_TABLE = " CREATE TABLE IF NOT EXISTS reservation" +
-            "(USER_ID INT PRIMARY KEY ," +
+            "(ID SERIAL NOT NULL PRIMARY KEY," +
+            "USER_ID INT ," +
             "SERVER_ID INT REFERENCES servers (ID) ," +
             "DATE DATE, " +
             "STATUS BOOLEAN," +

@@ -28,6 +28,7 @@ private final String SQL_DELETE_RESERVATION = "DELETE FROM reservation WHERE id 
         preparedStatement.setBoolean(4, status);
         preparedStatement.setString(5, reason);
         preparedStatement.executeUpdate();
+        connection.commit();
         preparedStatement.close();
         connection.close();
     } catch (SQLException e) {
@@ -46,10 +47,10 @@ private final String SQL_DELETE_RESERVATION = "DELETE FROM reservation WHERE id 
             PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_RESERVATION);
             statement.setString(1, reservation.getServer_id());
             statement.setString(2, reservation.getUser_id());
-            statement.setString(5, reservation.getDate());
-            statement.setBoolean(6, reservation.getStatus());
-            statement.setString(7, reservation.getReason());
-            statement.setInt(8, reservation.getId());
+            statement.setString(3, reservation.getDate());
+            statement.setBoolean(4, reservation.getStatus());
+            statement.setString(5, reservation.getReason());
+            statement.setInt(6, reservation.getId());
             int result = statement.executeUpdate();
             statement.close();
             connection.close();

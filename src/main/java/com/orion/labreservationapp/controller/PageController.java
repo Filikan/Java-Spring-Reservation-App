@@ -36,10 +36,17 @@ public class PageController {
         model.addAttribute("servers", server);
         return "servers.html";
     }
-    @RequestMapping(value="/servers/add", method = RequestMethod.POST)
-    public String createServer() throws SQLException {
-        adminServiceIF.createServer();
-       return "add-server.html";
+
+    @RequestMapping(value = "/servers/submit", method = RequestMethod.GET)
+    public String createServer(Model model,@RequestParam String server_name,@RequestParam String server_location,@RequestParam String server_ip,@RequestParam String serial_number,@RequestParam String server_type,@RequestParam Boolean is_host) throws SQLException {
+        adminServiceIF.createServer(server_name, server_location, server_ip, serial_number, server_type, is_host);
+        model.addAttribute("server", new ServerDO());
+        return "approved.html";
+    }
+    @RequestMapping(value="/servers/add", method = RequestMethod.GET)
+    public String createServer(Model model) throws SQLException {
+        model.addAttribute("server", new ServerDO());
+        return "addServer.html";
     }
     @RequestMapping(value="/servers/update", method = RequestMethod.POST)
     public String updateServer() throws SQLException {

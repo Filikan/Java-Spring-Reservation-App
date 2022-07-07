@@ -88,7 +88,6 @@ public int deleteReservation(ReservationDO reservation) throws SQLException {
             List <ReservationDO> reservationList = new ArrayList<>();
             while (resultSet.next()) {
                 ReservationDO reservation = new ReservationDO();
-                reservation.setId(resultSet.getInt("id"));
                 reservation.setServer_id(resultSet.getString("server_id"));
                 reservation.setUser_id(resultSet.getString("user_id"));
                 reservation.setDate(resultSet.getString("date"));

@@ -30,7 +30,7 @@ public class DBConstants {
             " PASSWORD VARCHAR(50))";
 
     private static final String CREATE_SERVER_TABLE = "CREATE TABLE IF NOT EXISTS servers " +
-            "(ID INT PRIMARY KEY ," +
+            "(ID SERIAL NOT NULL PRIMARY KEY ," +
             " SERVER_NAME TEXT, " +
             "SERVER_LOCATION TEXT," +
             " SERVER_IP TEXT," +

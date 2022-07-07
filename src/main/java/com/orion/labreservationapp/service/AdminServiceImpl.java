@@ -60,18 +60,19 @@ public class AdminServiceImpl implements AdminServiceIF {
     }
 
     @Override
-    public void createServer() throws SQLException {
+    public void createServer(String server_name, String server_location, String server_ip, String serial_number,String server_type, Boolean is_host) throws SQLException {
         try {
             Connection connection = TransactionManager.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_SERVER);
-            preparedStatement.setString(1, "server_name");
-            preparedStatement.setString(2, "server_ip");
-            preparedStatement.setString(3, "server_location");
-            preparedStatement.setString(4, "serial_number");
-            preparedStatement.setString(5, "server_type");
-            preparedStatement.setBoolean(6, true);
-            int row = preparedStatement.executeUpdate();
+            preparedStatement.setString(2, server_name);
+            preparedStatement.setString(3, server_location);
+            preparedStatement.setString(4, server_ip);
+            preparedStatement.setString(5, serial_number);
+            preparedStatement.setString(6, server_type);
+            preparedStatement.setBoolean(7, true);
+            preparedStatement.executeUpdate();
             connection.commit();
+            preparedStatement.close();
             connection.close();
         } catch (SQLException e) {
             Log.logger(Log.LogConstant.TAG_ERROR, e.getMessage());

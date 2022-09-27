@@ -4,19 +4,22 @@ import java.util.ArrayList;
 
 public class DBConstants {
 
-    private static final String DB_CONN_URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String DB_CONN_URL = "jdbc:postgresql://localhost:5432/deneme";
     private static final String DB_CONN_USERNAME = "postgres";
     private static final String DB_CONN_PASSWORD = "admin";
 
-    public static String getConnectionURL() {
+    public static String getConnectionURL() 
+    {
         return DB_CONN_URL;
     }
 
-    public static String getDBUsername() {
+    public static String getDBUsername() 
+    {
         return DB_CONN_USERNAME;
     }
 
-    public static String getDBPassword() {
+    public static String getDBPassword() 
+    {
         return DB_CONN_PASSWORD;
     }
 
@@ -43,7 +46,8 @@ public class DBConstants {
             "(ID SERIAL NOT NULL PRIMARY KEY," +
             "USER_ID INT ," +
             "SERVER_ID INT REFERENCES servers (ID) ," +
-            "DATE DATE, " +
+            "START_DATE DATE, " +
+            "END_DATE DATE, " +
             "STATUS BOOLEAN," +
             "REASON TEXT)";
 
@@ -52,7 +56,8 @@ public class DBConstants {
             "GROUP_NAME TEXT)";
 
 
-    public static ArrayList<String> getCreateTableQueries() {
+    public static ArrayList<String> getCreateTableQueries() 
+    {
         ArrayList<String> list = new ArrayList<>();
         list.add(CREATE_GROUP_TABLE);
         list.add(CREATE_RESERVATİON_TABLE);

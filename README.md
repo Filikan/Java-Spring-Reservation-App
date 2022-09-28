@@ -16,6 +16,14 @@ This project is created why we're going to develop a lab reservation app to prov
 
 ### Kanban Board ( To Do / In Progress / Done )
 
+### How Project Looks
+
+	
+Screenshots           |  Screenshots 
+:-------------------------:|:-------------------------:
+![b1](Screenshots/index.png)  |  ![b2](Screenshots/servers.png)
+![b3](Screenshots/add server.png)  |  ![b4](Screenshots/create reservation.png)
+
 To Do:
 * User is able to log in.
 * User is able to extend reservation.
@@ -28,8 +36,7 @@ In Progress:
 Done:
 * User is able to display all server information.
 * User can add server.
-
-- There is also uml diagram named uml.drawio in project directory.
+* There is also uml diagram named uml.drawio in project directory.
 
 
 ### How To Open Project At First:

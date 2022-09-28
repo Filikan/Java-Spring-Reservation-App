@@ -21,8 +21,8 @@ This project is created why we're going to develop a lab reservation app to prov
 	
 Screenshots           |  Screenshots 
 :-------------------------:|:-------------------------:
-![b1](Screenshots/index.png)  |  ![b2](Screenshots/servers.png)
-![b3](Screenshots/add server.png)  |  ![b4](Screenshots/create reservation.png)
+![s1](Screenshots/index.png)  |  ![s2](Screenshots/servers.png)
+![s3](Screenshots/add_server.png)  |  ![s4](Screenshots/create_reservation.png)
 
 To Do:
 * User is able to log in.
@@ -37,6 +37,7 @@ Done:
 * User is able to display all server information.
 * User can add server.
 * There is also uml diagram named uml.drawio in project directory.
+![uml](Screenshots/uml.png)
 
 
 ### How To Open Project At First:

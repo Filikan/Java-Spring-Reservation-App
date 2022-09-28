@@ -37,7 +37,9 @@ Done:
 * User is able to display all server information.
 * User can add server.
 * There is also uml diagram named uml.drawio in project directory.
-<br>
+
+
+### Uml Diagram:
 ![uml](Screenshots/uml.png)
 
 

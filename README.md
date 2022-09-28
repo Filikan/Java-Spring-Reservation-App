@@ -14,8 +14,6 @@ This project is created why we're going to develop a lab reservation app to prov
 
 ## Greetings from Former Intern **Kenan** :)
 
-### Kanban Board ( To Do / In Progress / Done )
-
 ### How Project Looks
 
 	
@@ -23,6 +21,8 @@ Screenshots           |  Screenshots
 :-------------------------:|:-------------------------:
 ![s1](Screenshots/index.png)  |  ![s2](Screenshots/servers.png)
 ![s3](Screenshots/add_server.png)  |  ![s4](Screenshots/create_reservation.png)
+
+### Kanban Board ( To Do / In Progress / Done )
 
 To Do:
 * User is able to log in.

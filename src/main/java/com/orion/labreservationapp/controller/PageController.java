@@ -82,8 +82,6 @@ public class PageController {
     @RequestMapping(value = "/reservations/create", method = RequestMethod.GET)
     public String createReservation(Model model) throws SQLException {
         model.addAttribute("reservation", new ReservationDO());
-
-        // burası denemelik ?? çalışcak mı
         List<ServerDO> server = adminServiceIF.getServer();
         List<ReservationDO> reservation = reservationServiceIF.getReservation();
         model.addAttribute("reservations", reservation);

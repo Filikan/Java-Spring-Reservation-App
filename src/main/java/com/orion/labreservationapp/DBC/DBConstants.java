@@ -8,18 +8,15 @@ public class DBConstants {
     private static final String DB_CONN_USERNAME = "postgres";
     private static final String DB_CONN_PASSWORD = "admin";
 
-    public static String getConnectionURL() 
-    {
+    public static String getConnectionURL() {
         return DB_CONN_URL;
     }
 
-    public static String getDBUsername() 
-    {
+    public static String getDBUsername() {
         return DB_CONN_USERNAME;
     }
 
-    public static String getDBPassword() 
-    {
+    public static String getDBPassword() {
         return DB_CONN_PASSWORD;
     }
 
@@ -41,7 +38,6 @@ public class DBConstants {
             "SERVER_TYPE TEXT," +
             "IS_HOST BOOLEAN)";
 
-
     private static final String CREATE_RESERVATİON_TABLE = " CREATE TABLE IF NOT EXISTS reservation" +
             "(ID SERIAL NOT NULL PRIMARY KEY," +
             "USER_ID INT ," +
@@ -55,9 +51,7 @@ public class DBConstants {
             "(ID INT PRIMARY KEY  NOT NULL," +
             "GROUP_NAME TEXT)";
 
-
-    public static ArrayList<String> getCreateTableQueries() 
-    {
+    public static ArrayList<String> getCreateTableQueries() {
         ArrayList<String> list = new ArrayList<>();
         list.add(CREATE_GROUP_TABLE);
         list.add(CREATE_RESERVATİON_TABLE);

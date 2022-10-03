@@ -10,7 +10,8 @@ public class TransactionManager {
         Connection connection = null;
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(DBConstants.getConnectionURL(), DBConstants.getDBUsername(), DBConstants.getDBPassword());
+            connection = DriverManager.getConnection(DBConstants.getConnectionURL(), DBConstants.getDBUsername(),
+                    DBConstants.getDBPassword());
             connection.setAutoCommit(false);
         } catch (SQLException throwables) {
             throwables.printStackTrace();

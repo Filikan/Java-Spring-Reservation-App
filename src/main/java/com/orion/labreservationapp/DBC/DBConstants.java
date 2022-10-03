@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class DBConstants {
 
-    private static final String DB_CONN_URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String DB_CONN_URL = "jdbc:postgresql://localhost:5432/deneme";
     private static final String DB_CONN_USERNAME = "postgres";
     private static final String DB_CONN_PASSWORD = "admin";
 
@@ -38,19 +38,18 @@ public class DBConstants {
             "SERVER_TYPE TEXT," +
             "IS_HOST BOOLEAN)";
 
-
     private static final String CREATE_RESERVATİON_TABLE = " CREATE TABLE IF NOT EXISTS reservation" +
             "(ID SERIAL NOT NULL PRIMARY KEY," +
             "USER_ID INT ," +
             "SERVER_ID INT REFERENCES servers (ID) ," +
-            "DATE DATE, " +
+            "START_DATE DATE, " +
+            "END_DATE DATE, " +
             "STATUS BOOLEAN," +
             "REASON TEXT)";
 
     private static final String CREATE_GROUP_TABLE = " CREATE TABLE IF NOT EXISTS groups" +
             "(ID INT PRIMARY KEY  NOT NULL," +
             "GROUP_NAME TEXT)";
-
 
     public static ArrayList<String> getCreateTableQueries() {
         ArrayList<String> list = new ArrayList<>();

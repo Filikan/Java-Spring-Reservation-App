@@ -6,7 +6,6 @@ import java.sql.Statement;
 
 import static com.orion.labreservationapp.DBC.DBConstants.getCreateTableQueries;
 
-
 public class DatabaseManager {
 
     public static void run() {

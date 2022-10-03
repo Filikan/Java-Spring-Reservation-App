@@ -12,10 +12,13 @@ import java.util.List;
 @Service
 public class AdminServiceImpl implements AdminServiceIF {
     private final String SQL_GET_SERVERS = "SELECT * FROM servers";
-    private final String SQL_CREATE_SERVER = "INSERT INTO servers (server_name, server_ip, server_location, serial_number, server_type, is_host) VALUES (?,?,?,?,?,?)";
+    private final String SQL_CREATE_SERVER = "INSERT INTO servers (server_name, server_ip, server_location, serial_number, server_type, is_host, id) VALUES (?,?,?,?,?,?,?)";
     private final String SQL_DELETE_SERVER_BY_ID = "DELETE FROM servers WHERE server_id = ?";
     private final String SQL_DELETE_SERVERS = "DELETE FROM servers";
     private final String SQL_UPDATE_SERVER = "UPDATE servers SET server_name = ?, server_ip = ?, server_location = ?, serial_number = ?, server_type = ?, is_host = ? WHERE server_id = ?";
+
+    public AdminServiceImpl() {
+    }
 
     public int getServerCount() throws SQLException {
         Connection connection = TransactionManager.getConnection();
@@ -31,6 +34,19 @@ public class AdminServiceImpl implements AdminServiceIF {
         return count;
     }
 
+    public int getLastServerId() throws SQLException {
+        Connection connection = TransactionManager.getConnection();
+        int lastId = 0;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM servers WHERE id = (SELECT MAX(id) FROM servers)");
+        while (resultSet.next()) {
+            lastId = resultSet.getInt(1);
+        }
+        resultSet.close();
+        statement.close();
+        connection.close();
+        return lastId;
+    }
 
     public List<ServerDO> getServer() throws SQLException {
         try {
@@ -60,16 +76,20 @@ public class AdminServiceImpl implements AdminServiceIF {
     }
 
     @Override
-    public void createServer(String server_name, String server_location, String server_ip, String serial_number,String server_type, Boolean is_host) throws SQLException {
+    public void createServer(String server_name, String server_location, String server_ip, String serial_number,
+            String server_type, Boolean is_host, int id) throws SQLException {
+        id = getLastServerId() + 1;
         try {
+
             Connection connection = TransactionManager.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_SERVER);
-            preparedStatement.setString(2, server_name);
-            preparedStatement.setString(3, server_location);
-            preparedStatement.setString(4, server_ip);
-            preparedStatement.setString(5, serial_number);
-            preparedStatement.setString(6, server_type);
-            preparedStatement.setBoolean(7, true);
+            preparedStatement.setString(1, server_name);
+            preparedStatement.setString(2, server_location);
+            preparedStatement.setString(3, server_ip);
+            preparedStatement.setString(4, serial_number);
+            preparedStatement.setString(5, server_type);
+            preparedStatement.setBoolean(6, true);
+            preparedStatement.setInt(7, id);
             preparedStatement.executeUpdate();
             connection.commit();
             preparedStatement.close();
@@ -80,8 +100,6 @@ public class AdminServiceImpl implements AdminServiceIF {
         }
 
     }
-
-
 
     public int updateServer(ServerDO server) throws SQLException {
         try {
@@ -98,8 +116,7 @@ public class AdminServiceImpl implements AdminServiceIF {
             statement.close();
             connection.close();
             return result;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             Log.logger(Log.LogConstant.TAG_ERROR, e.getMessage());
             throw e;
         }

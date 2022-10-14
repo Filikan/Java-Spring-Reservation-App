@@ -32,17 +32,24 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="w-100 btn btn-lg btn-outline-info" type="submit" onclick="signIn()">Sign in</button>
+        <button class="w-100 btn btn-lg btn-outline-info" type="submit" onclick="signUp()">Sign up</button>
+        <br>
+        <button class="w-100 btn btn-lg btn-outline-info" type="submit" onclick="logIn()">Log in</button>
         <p class="mt-5 mb-3 text-muted">&copy; Orion Innovation Lab Reservation Tool</p>
       </form>
     </main>
     
   </body>
   <script type="text/javascript">
-    function signIn() 
-    { 
-      window.open("http://localhost:8080/servers");
+    function signUp()
+    {
+      //window.open("http://localhost:9090/servers"); //?port
       //window.close();
+      window.open("http://localhost:9090/users/add", "myWindow", "status = 1, height = 550, width = 300, resizable = 0");
+    }
+    function logIn()
+    {
+      window.open("http://localhost:9090/servers"); //?port
     }
   </script>
 </html>

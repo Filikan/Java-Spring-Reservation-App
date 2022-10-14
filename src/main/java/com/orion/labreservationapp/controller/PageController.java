@@ -6,8 +6,10 @@ import java.util.List;
 
 import com.orion.labreservationapp.model.ReservationDO;
 import com.orion.labreservationapp.model.ServerDO;
+import com.orion.labreservationapp.model.UserDO;
 import com.orion.labreservationapp.service.AdminServiceIF;
 import com.orion.labreservationapp.service.ReservationServiceIF;
+import com.orion.labreservationapp.service.UserServiceIF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,8 @@ public class PageController {
     private AdminServiceIF adminServiceIF;
     @Autowired
     private ReservationServiceIF reservationServiceIF;
+    @Autowired
+    private UserServiceIF userServiceIF;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getHome() throws SQLException {
@@ -50,6 +54,30 @@ public class PageController {
     public String createServer(Model model) throws SQLException {
         model.addAttribute("server", new ServerDO());
         return "addServer.html";
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public String getUser(Model model) throws SQLException {
+        List<UserDO> user = userServiceIF.getUser();
+        List<ReservationDO> reservation = reservationServiceIF.getReservation();
+        model.addAttribute("reservations", reservation);
+        model.addAttribute("users", user);
+        return "users.html";
+    }
+
+    @RequestMapping(value = "/users/add", method = RequestMethod.GET)
+    public String createUser(Model model) throws SQLException {
+        model.addAttribute("user", new UserDO());
+        return "addUser.html";
+    }
+
+    @RequestMapping(value = "/users/submit", method = RequestMethod.POST)
+    public String createUser(Model model, @RequestParam String user_name, @RequestParam String first_name,
+                             @RequestParam String last_name, @RequestParam String email, @RequestParam String department,
+                             @RequestParam String password, @RequestParam int id) throws SQLException {
+        userServiceIF.createUser(user_name,first_name, last_name, email, department, password, id);
+        model.addAttribute("user", new UserDO());
+        return "approved.html";
     }
 
     @RequestMapping(value = "/servers/update", method = RequestMethod.POST)

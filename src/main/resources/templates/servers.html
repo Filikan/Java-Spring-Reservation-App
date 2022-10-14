@@ -70,17 +70,17 @@
   <script>
       function openWin(server_id, server_name) 
       {
-        window.open(`http://localhost:8080/reservations/create?server_id=${server_id}&server_name=${server_name}`, "myWindow", "status = 1, height = 550, width = 300, resizable = 0");
+        window.open(`http://localhost:9090/reservations/create?server_id=${server_id}&server_name=${server_name}`, "myWindow", "status = 1, height = 550, width = 300, resizable = 0");
       }
 
       function addServer()
       {
-        window.open("http://localhost:8080/servers/add", "myWindow", "status = 1, height = 550, width = 300, resizable = 0");
+        window.open("http://localhost:9090/servers/add", "myWindow", "status = 1, height = 550, width = 300, resizable = 0");
       }
 
       function logOut()
       {
-        window.open("http://localhost:8080/");
+        window.open("http://localhost:9090/");
       }
   </script>
 </html>

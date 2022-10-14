@@ -6,7 +6,7 @@ public class DBConstants {
 
     private static final String DB_CONN_URL = "jdbc:postgresql://localhost:5432/deneme";
     private static final String DB_CONN_USERNAME = "postgres";
-    private static final String DB_CONN_PASSWORD = "admin";
+    private static final String DB_CONN_PASSWORD = "12345";
 
     public static String getConnectionURL() {
         return DB_CONN_URL;

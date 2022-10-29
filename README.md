@@ -88,7 +88,7 @@ Done:
    
    4. Import **data.csv** to your database while using pgAdmin4.You can run your query like this,
    ```SQL
-        COPY servers FROM 'C:\data.csv' DELIMITER ',' CSV HEADER;
+        COPY test.servers FROM 'C:\data.csv' DELIMITER ',' CSV HEADER;
     ```
    *Note that,you need to put **data.csv** file in C directory.Otherwise when you try to run your query it will possibly say that permission denied.So **data.csv** need to be in C directory.
    5. After making that preparations, It should work fine. Open project with any code editor like **Visual Studio Code** or **IntelliJ IDEA**.

@@ -1,6 +1,10 @@
 package com.orion.labreservationapp.controller;
 
 import com.orion.labreservationapp.entity.Reservation;
+import com.orion.labreservationapp.entity.User;
+import com.orion.labreservationapp.requests.ReservationCreateRequest;
+import com.orion.labreservationapp.requests.ReservationUpdateRequest;
+import com.orion.labreservationapp.responses.ReservationResponse;
 import com.orion.labreservationapp.service.ReservationService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,24 +23,24 @@ public class ReservationController {
 
     //Check this again.
     @GetMapping
-    public List<Reservation> getAllReservations() {
-        return reservationService.getAllReservations();
+    public List<ReservationResponse> getAllReservations(@RequestParam Optional<Long> reservationId) {
+        return reservationService.getAllReservations(reservationId);
     }
 
     @PostMapping
-    public Reservation createOneReservation(@RequestBody Reservation newReservation) {
-        return reservationService.createOneReservation(newReservation);
+    public Reservation createOneReservation(@RequestBody ReservationCreateRequest newReservationRequest) {
+        return reservationService.createOneReservation(newReservationRequest);
     }
 
     @GetMapping("/{reservationId}")
-    public Reservation getOneReservationById(@PathVariable Long reservationId) {
+    public Reservation getOneReservation(@PathVariable Long reservationId) {
         return reservationService.getOneReservationById(reservationId);
     }
 
     @PutMapping("/{reservationId}")
     public Reservation updateOneReservation(@PathVariable Long reservationId,
-                                            @RequestBody Reservation newReservation) {
-        return reservationService.updateOneReservationById(reservationId,newReservation);
+                                            @RequestBody ReservationUpdateRequest updateReservation) {
+        return reservationService.updateOneReservationById(reservationId,updateReservation);
     }
 
     @DeleteMapping("/{reservationId}")

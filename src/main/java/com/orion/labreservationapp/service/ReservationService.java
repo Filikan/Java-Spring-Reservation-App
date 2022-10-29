@@ -4,8 +4,12 @@ import com.orion.labreservationapp.entity.Reservation;
 import com.orion.labreservationapp.entity.Server;
 import com.orion.labreservationapp.entity.User;
 import com.orion.labreservationapp.repos.ReservationRepository;
+import com.orion.labreservationapp.requests.ReservationCreateRequest;
+import com.orion.labreservationapp.requests.ReservationUpdateRequest;
+import com.orion.labreservationapp.responses.ReservationResponse;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -30,26 +34,39 @@ public class ReservationService {
         return reservationRepository.findAll();
     }*/
 
-    public List<Reservation> getAllReservations() {
-        return reservationRepository.findAll();
+    public List<ReservationResponse> getAllReservations(Optional<Long> reservationId) {
+        List<Reservation> list;
+        if(reservationId.isPresent()) {
+            list = reservationRepository.findByUserId(reservationId.get());
+        }
+        list = reservationRepository.findAll();
+        return list.stream().map(reservation -> new ReservationResponse(reservation)).collect(Collectors.toList());
     }
+
+
 
     public Reservation getOneReservationById(Long reservationId){
         return reservationRepository.findById(reservationId).orElse(null);
     }
-    public Reservation createOneReservation(Reservation newReservation) {
-        return reservationRepository.save(newReservation);
+    public Reservation createOneReservation(ReservationCreateRequest newReservationRequest) {
+        User user = userService.getOneUserById(newReservationRequest.getUserId());
+        Server server = serverService.getOneServerById(newReservationRequest.getServerId());
+        if(user == null || server == null)
+            return null;
+        Reservation toSave = new Reservation();
+        toSave.setId(newReservationRequest.getId());
+        toSave.setUser(user);
+        toSave.setServer(server);
+        toSave.setReservationDate(newReservationRequest.getReservationDate());
+        return reservationRepository.save(toSave);
     }
 
-    public Reservation updateOneReservationById(Long reservationId,
-                                                Reservation newReservation) {
+    public Reservation updateOneReservationById(Long reservationId, ReservationUpdateRequest updateReservation) {
         Optional<Reservation> reservation = reservationRepository.findById(reservationId);
         if (reservation.isPresent())
         {
             Reservation toUpdate = reservation.get();
-            toUpdate.setUser(newReservation.getUser());
-            toUpdate.setServer(newReservation.getServer());
-            /*toUpdate.setReservationDate((Date) updateReservation.getReservationDate());*/
+            toUpdate.setReservationDate((Date) updateReservation.getReservationDate());
             reservationRepository.save(toUpdate);
             return toUpdate;
         }
@@ -59,4 +76,6 @@ public class ReservationService {
     public void deleteOneReservationById(Long reservationId) {
         reservationRepository.deleteById(reservationId);
     }
+
+
 }

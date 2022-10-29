@@ -2,15 +2,14 @@ package com.orion.labreservationapp.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "servers")
 @Data
 public class Server {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
     String serverName;

@@ -12,6 +12,7 @@ import java.util.Date;
 @Data
 public class Reservation {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)

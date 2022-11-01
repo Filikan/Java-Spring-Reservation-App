@@ -23,8 +23,8 @@ public class ReservationController {
 
     //Check this again.
     @GetMapping
-    public List<ReservationResponse> getAllReservations(@RequestParam Optional<Long> reservationId) {
-        return reservationService.getAllReservations(reservationId);
+    public List<ReservationResponse> getAllReservations(@RequestParam Optional<Long> userId) {
+        return reservationService.getAllReservations(userId);
     }
 
     @PostMapping

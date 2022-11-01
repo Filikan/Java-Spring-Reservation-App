@@ -11,14 +11,20 @@ import java.util.Date;
 public class ReservationResponse {
     Long id;
     Long userId;
+    String firstName;
+    String lastName;
     Long serverId;
+    String serverName;
     @Temporal(TemporalType.DATE)
     Date reservationDate;
 
     public ReservationResponse(Reservation entity){ // for mapping. => mapper
         this.id = entity.getId();
         this.userId = entity.getUser().getId();
+        this.firstName = entity.getUser().getFirstName();
+        this.lastName = entity.getUser().getLastName();
         this.serverId = entity.getServer().getId();
+        this.serverName = entity.getServer().getServerName();
         this.reservationDate = entity.getReservationDate();
     }
 

@@ -29,15 +29,10 @@ public class ReservationService {
         this.serverService = serverService;
     }
 
-    //Check out here later.
-    /*public List<Reservation> geetAllReservations() {
-        return reservationRepository.findAll();
-    }*/
-
-    public List<ReservationResponse> getAllReservations(Optional<Long> reservationId) {
+    public List<ReservationResponse> getAllReservations(Optional<Long> userId) {
         List<Reservation> list;
-        if(reservationId.isPresent()) {
-            list = reservationRepository.findByUserId(reservationId.get());
+        if(userId.isPresent()) {
+            list = reservationRepository.findByUserId(userId.get());
         }
         list = reservationRepository.findAll();
         return list.stream().map(reservation -> new ReservationResponse(reservation)).collect(Collectors.toList());

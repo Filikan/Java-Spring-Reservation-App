@@ -1,6 +1,8 @@
 package com.orion.labreservationapp.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -18,5 +20,9 @@ public class User {
     String email;
     String password;
 
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    Role roleId;
 
 }

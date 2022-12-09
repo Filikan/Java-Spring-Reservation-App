@@ -52,7 +52,8 @@ public class ReservationService {
         toSave.setId(newReservationRequest.getId());
         toSave.setUser(user);
         toSave.setServer(server);
-        toSave.setReservationDate(newReservationRequest.getReservationDate());
+        toSave.setReservationStartDate(newReservationRequest.getReservationStartDate());
+        toSave.setReservationEndDate(newReservationRequest.getReservationEndDate());
         return reservationRepository.save(toSave);
     }
 
@@ -61,7 +62,8 @@ public class ReservationService {
         if (reservation.isPresent())
         {
             Reservation toUpdate = reservation.get();
-            toUpdate.setReservationDate((Date) updateReservation.getReservationDate());
+            toUpdate.setReservationStartDate((Date) updateReservation.getReservationStartDate());
+            toUpdate.setReservationEndDate((Date) updateReservation.getReservationEndDate());
             reservationRepository.save(toUpdate);
             return toUpdate;
         }

@@ -26,5 +26,8 @@ public class Reservation {
     Server server;
 
     @Temporal(TemporalType.DATE)
-    Date reservationDate;
+    Date reservationStartDate;
+
+    @Temporal(TemporalType.DATE)
+    Date reservationEndDate;
 }

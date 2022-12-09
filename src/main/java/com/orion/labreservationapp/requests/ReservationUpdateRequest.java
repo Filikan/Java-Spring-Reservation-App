@@ -10,5 +10,8 @@ import java.util.Date;
 public class ReservationUpdateRequest {
 
     @Temporal(TemporalType.DATE)
-    Date reservationDate;
+    Date reservationStartDate;
+
+    @Temporal(TemporalType.DATE)
+    Date reservationEndDate;
 }

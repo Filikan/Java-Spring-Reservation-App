@@ -16,7 +16,9 @@ public class ReservationResponse {
     Long serverId;
     String serverName;
     @Temporal(TemporalType.DATE)
-    Date reservationDate;
+    Date reservationStartDate;
+    @Temporal(TemporalType.DATE)
+    Date reservationEndDate;
 
     public ReservationResponse(Reservation entity){ // for mapping. => mapper
         this.id = entity.getId();
@@ -25,7 +27,8 @@ public class ReservationResponse {
         this.lastName = entity.getUser().getLastName();
         this.serverId = entity.getServer().getId();
         this.serverName = entity.getServer().getServerName();
-        this.reservationDate = entity.getReservationDate();
+        this.reservationStartDate = entity.getReservationStartDate();
+        this.reservationEndDate = entity.getReservationEndDate();
     }
 
 }

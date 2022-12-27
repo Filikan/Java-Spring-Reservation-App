@@ -27,14 +27,14 @@ To Do:
 
 In Progress:
 * User is able to book (due date is required)
-* Users can login in the backend,but not in the frontend.
+* Users can login in the back-end,but not in the front-end.
 * If access token's time is expired,there should be refresh token.Coding started but not finished yet.You can reach it from "refreshToken" branch. 
 
 Done:
 * User is able to display all server informations.
 * User is able to display all reservation informations.
-* Users can login in the backend.
-* Users can make reservations in backend.
+* Users can login in the back-end.
+* Users can make reservations in back-end.
 * Users can create an access token for login.
 
 ### How To Open Project At First:
@@ -99,11 +99,11 @@ Screenshots           |  Screenshots
         lab.expires.in=604800
    ```
 
-### FrontEnd: React
+### Front-End: React
 1. After taking the React project to your workspace,you must install npm.You can install from terminal.
    ![s13](Screenshots/npmInstall.jfif)
 2. In this project,Material-UI is used.So,when you run the project you can encounter with mui problems.If this happens,you can
-install the mui in your terminal accoording to https://mui.com/
+install the mui in your terminal according to https://mui.com/
 
 ### How to Run React Project
 
@@ -119,7 +119,7 @@ install the mui in your terminal accoording to https://mui.com/
 in the database.You can login with Postman.
 
 ### What is Postman
-   Postman is an application used for API testing.The reason we login from postman is that it generates access tokens for us. But it doesn't do it on its own.If you want to know how we can create an access token, you can check from backend project.
+   Postman is an application used for API testing.The reason we login from postman is that it generates access tokens for us. But it doesn't do it on its own.If you want to know how we can create an access token, you can check from back-end project.
 After we login from Postman you can see the access token and userId. That means, that user has this access token.It doesn't enough. Because you need to copy this access token
 and paste to ServiceCaller.js in the React project.
 

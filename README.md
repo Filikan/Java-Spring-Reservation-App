@@ -85,7 +85,7 @@ Screenshots           |  Screenshots
 ### application.properties
 
 ```java
-        spring.datasource.url= jdbc:postgresql://localhost:5432/labrez( labrez is my database name so you can change it for yourself)
+        spring.datasource.url= jdbc:postgresql://localhost:5432/your database name
         spring.datasource.username= your username
         spring.datasource.password= your password
         server.port=9090 (whatever you want)

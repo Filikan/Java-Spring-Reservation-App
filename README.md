@@ -18,7 +18,7 @@ This project is created why we're going to develop a lab reservation app to prov
 Screenshots           |  Screenshots 
 :-------------------------:|:-------------------------:
 ![s1](Screenshots/login.jfif)  |  ![s2](Screenshots/reservations.jfif)
-![s3](Screenshots/servers.jfif)  |  ![s4](Screenshots/newReservation.jfif)
+  |  ![s4](Screenshots/newReservation.jfif)
 
 ### To Do / In Progress / Done
 
